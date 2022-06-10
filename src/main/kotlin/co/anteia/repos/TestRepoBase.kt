@@ -38,4 +38,14 @@ abstract class TestRepoBase<T : TestEntityBase> {
             throw Exception("Object with id: ${obj.id} does not exist")
         }
     }
+
+    fun delete(obj: T): T {
+        if (obj.id == null) throw Exception("Object does not exist (Id is null)")
+        if (data.containsKey(obj.id)) {
+            data.remove(obj.id)
+            return obj
+        } else {
+            throw Exception("Object with id: ${obj.id} does not exist")
+        }
+    }
 }
